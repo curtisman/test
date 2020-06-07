@@ -18,10 +18,14 @@ resources:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- name: skipComponentGovernanceDetection
+  value: true
+
 jobs:
 - deployment: blah
   displayName: "blah"
-  environment: npm-feed
+  environment: npm-feed.package
   strategy: 
     runOnce:
       deploy:
