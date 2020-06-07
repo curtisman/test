@@ -25,14 +25,25 @@ variables:
 stages:
 - stage: A
   jobs:
-  - job:
-    steps:
-    - script: echo deployment $(Build.Id)
+  - deployment: blah
+    displayName: "blah"
+    environment: npm-feed
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+            # No need to explicitly pass the connection details
+          - script: echo deployment $(Build.Id)
 
-
-stages:
 - stage: B
+  dependsOn: none
   jobs:
-  - job:
-    steps:
-    - script: echo deployment $(Build.Id)
+  - deployment: blah
+    displayName: "blah"
+    environment: npm-feed
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+            # No need to explicitly pass the connection details
+          - script: echo deployment $(Build.Id)
