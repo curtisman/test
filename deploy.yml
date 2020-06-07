@@ -20,7 +20,7 @@ jobs:
   displayName: "blah"
   - job:
     steps:
-    - script: echo Hello, world!
+    - script: echo Hello, world! awefawef
       displayName: 'Run a one-line script'
 
     - script: |
