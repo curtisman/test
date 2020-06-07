@@ -12,6 +12,10 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  - name: skipComponentGovernanceDetection
+    value: true
+
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
