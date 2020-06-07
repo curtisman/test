@@ -9,7 +9,7 @@ resources:
     source: Build # Name of the triggering pipeline
     trigger:
       branches:
-      - *
+      - master
 
 pool:
   vmImage: 'ubuntu-latest'
