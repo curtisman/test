@@ -22,13 +22,17 @@ variables:
 - name: skipComponentGovernanceDetection
   value: true
 
-jobs:
-- deployment: blah
-  displayName: "blah"
-  environment: npm-feed.package
-  strategy: 
-    runOnce:
-      deploy:
-        steps:
-          # No need to explicitly pass the connection details
-        - script: echo deployment $(Build.Id)
+stages:
+- stage: A
+  jobs:
+  - job:
+    steps:
+    - script: echo deployment $(Build.Id)
+
+
+stages:
+- stage: B
+  jobs:
+  - job:
+    steps:
+    - script: echo deployment $(Build.Id)
