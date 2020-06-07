@@ -18,12 +18,9 @@ pool:
 jobs:
 - deployment: blah
   displayName: "blah"
-  - job:
-    steps:
-    - script: echo Hello, world! awefawef
-      displayName: 'Run a one-line script'
-
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-      displayName: 'Run a multi-line script'
+  strategy: 
+    runOnce:
+      deploy:
+        steps:
+          # No need to explicitly pass the connection details
+        - script: echo deployment $(Build.Id)
