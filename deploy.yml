@@ -21,6 +21,7 @@ pool:
 jobs:
 - deployment: blah
   displayName: "blah"
+  environment: npm-feed
   strategy: 
     runOnce:
       deploy:
