@@ -6,10 +6,12 @@
 trigger:
 - master
 - release/*
+- unknown
 
 pr:
 - master
 - release/*
+- unknown
 
 pool:
   vmImage: 'ubuntu-latest'

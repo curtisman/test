@@ -14,6 +14,7 @@ resources:
       branches:
       - master
       - release/*
+      - unknown
 
 
 pool:
@@ -25,6 +26,7 @@ variables:
 
 stages:
 - stage: A
+  dependsOn: []
   jobs:
   - deployment: blah
     displayName: "blah"
@@ -37,7 +39,7 @@ stages:
           - script: echo deployment $(Build.Id)
 
 - stage: B
-  dependsOn: none
+  dependsOn: []
   jobs:
   - deployment: blah
     displayName: "blah"
