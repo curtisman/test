@@ -6,7 +6,7 @@
 trigger:
 - master
 - release/*
-- unknown
+- refs/tags/*
 
 pr:
 - master
@@ -20,11 +20,28 @@ variables:
   - name: skipComponentGovernanceDetection
     value: true
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: build
+  jobs:
+    - job:
+      steps:
+      - script: echo Hello, world!
+        displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+
+- stage: publish
+  dependsOn: build
+  jobs:
+  - deployment: B
+    displayName: "B"
+    environment: npm-feed
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+            # No need to explicitly pass the connection details
+          - script: echo deployment $(Build.Id)
