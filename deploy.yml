@@ -14,7 +14,7 @@ resources:
       branches:
       - master
       - release/*
-      - unknown
+      - refs/tags/*
 
 
 pool:
@@ -28,21 +28,21 @@ stages:
 - stage: A
   dependsOn: []
   jobs:
-  - deployment: blah
-    displayName: "blah"
+  - deployment: A
+    displayName: "A"
     environment: npm-feed
     strategy: 
       runOnce:
         deploy:
           steps:
             # No need to explicitly pass the connection details
-          - script: echo deployment $(Build.Id)
+          - script: echo deployment $(Build.Id) 2
 
 - stage: B
   dependsOn: []
   jobs:
-  - deployment: blah
-    displayName: "blah"
+  - deployment: B
+    displayName: "B"
     environment: npm-feed
     strategy: 
       runOnce:
