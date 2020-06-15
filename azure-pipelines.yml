@@ -33,7 +33,7 @@ stages:
           echo See https://aka.ms/yaml
           ##vso[task.setvariable variable=blah;isOutput=true]true
         displayName: 'Run a multi-line script'
-    - if ${{ variables["blah"] }}:
+    - if $[ variables["blah"] ]:
       - job:
           - steps:
             - script: echo Hello, world!
