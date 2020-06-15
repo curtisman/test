@@ -31,7 +31,7 @@ stages:
       - script: |
           echo Add other tasks to build, test, and deploy your project.
           echo See https://aka.ms/yaml
-          echo '##vso[task.setvariable variable=blah;isOutput=true]true'
+          echo "##vso[task.setvariable variable=blah;isOutput=true]true"
         displayName: 'Run a multi-line script'
     - job:
       dependsOn: A
