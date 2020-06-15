@@ -37,7 +37,7 @@ stages:
       dependsOn: A
       variables:
         blah: $[ dependencies.A.outputs['setVar.blah'] ]
-      condition: eq(variables.blah, true)
+      condition: eq(dependencies.A.outputs['setVar.blah'], true)
       steps:
       - script: echo Hello, world 1 $(blah)
         displayName: 'Run a one-line script'
@@ -45,7 +45,7 @@ stages:
       dependsOn: A
       variables:
         blah: $[ dependencies.A.outputs['setVar.blah'] ]
-      condition: eq(variables.blah, false)
+      condition: eq(dependencies.A.outputs['setVar.blah'], false)
       steps:
       - script: echo Hello, world 2 $(blah)
         displayName: 'Run a one-line script'
