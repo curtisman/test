@@ -33,11 +33,16 @@ stages:
           echo See https://aka.ms/yaml
           ##vso[task.setvariable variable=blah;isOutput=true]true
         displayName: 'Run a multi-line script'
-    - if $[ variables["blah"] ]:
-      - job:
-          - steps:
-            - script: echo Hello, world!
-              displayName: 'Run a one-line script'
+    - job:
+      condition: eq(variables.blah, true)
+      steps:
+      - script: echo Hello, world 1!
+        displayName: 'Run a one-line script'
+    - job:
+      condition: eq(variables.blah, false)
+      steps:
+      - script: echo Hello, world 2!
+        displayName: 'Run a one-line script'
 
 - stage: publish
   dependsOn: build
