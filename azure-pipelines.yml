@@ -36,8 +36,7 @@ stages:
     - job:
       dependsOn: A
       variables:
-        - name: blah
-          value: dependencies.A.outputs['blah']
+        - blah: $[ dependencies.A.outputs['blah'] ]
       condition: eq(variables.blah, true)
       steps:
       - script: echo Hello, world 1!
@@ -45,8 +44,7 @@ stages:
     - job:
       dependsOn: A
       variables:
-        - name: blah
-          value: dependencies.A.outputs['blah']
+        - blah: $[ dependencies.A.outputs['blah'] ]
       condition: eq(variables.blah, false)
       steps:
       - script: echo Hello, world 2!
