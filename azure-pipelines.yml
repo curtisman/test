@@ -53,9 +53,9 @@ stages:
       dependsOn: A
       variables:
         blah: $[ dependencies.A.outputs['setVar.blah'] ]
-        steps:
-        - script: echo Hello, world 3 $(blah)
-          displayName: 'Run a one-line script'
+      steps:
+      - script: echo Hello, world 3 $(blah)
+        displayName: 'Run a one-line script'
 
 - stage: publish
   dependsOn: build
