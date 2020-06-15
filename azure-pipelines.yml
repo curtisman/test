@@ -35,12 +35,18 @@ stages:
         displayName: 'Run a multi-line script'
     - job:
       dependsOn: A
+      variables:
+        - name: blah
+        - value: dependencies.A.outputs['blah']
       condition: eq(variables.blah, true)
       steps:
       - script: echo Hello, world 1!
         displayName: 'Run a one-line script'
     - job:
       dependsOn: A
+      variables:
+        - name: blah
+        - value: dependencies.A.outputs['blah']
       condition: eq(variables.blah, false)
       steps:
       - script: echo Hello, world 2!
