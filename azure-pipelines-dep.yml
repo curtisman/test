@@ -57,16 +57,3 @@ stages:
       steps:
       - script: echo Hello, world 2 $(blah)
         displayName: 'Run a one-line script'
-
-- stage: publish
-  dependsOn: build
-  jobs:
-  - deployment: B
-    displayName: "B"
-    environment: npm-feed
-    strategy: 
-      runOnce:
-        deploy:
-          steps:
-            # No need to explicitly pass the connection details
-          - script: echo deployment $(Build.Id)
