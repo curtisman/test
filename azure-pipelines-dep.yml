@@ -8,15 +8,17 @@ pr: none
 
 resources:
   pipelines:
-    - pipeline: Build
+    - pipeline: p1
       source: Build
       trigger:
         branches:
+          include:
           - master
-    - pipeline: Build2
+    - pipeline: p2
       source: Build2
       trigger:
         branches:
+          include:
           - master
 
 pool:
