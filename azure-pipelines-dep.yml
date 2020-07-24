@@ -15,7 +15,7 @@ resources:
           include:
           - master
     - pipeline: p2
-      source: Build2
+      source: Build - common-utils
       trigger:
         branches:
           include:
@@ -33,8 +33,6 @@ stages:
   jobs:
     - job: A
       steps:
-
-
       - script: |
           echo "##vso[task.setvariable variable=blah;isOutput=true]true"
         displayName: 'Set variable'
