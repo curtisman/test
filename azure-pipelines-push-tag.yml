@@ -19,5 +19,6 @@ variables:
 steps:
 - script: |
     git tag blah-$(Build.BuildId)
-    git push refs/tags/blah-$(Build.BuildId)
+    git tag
+    git push origin blah-$(Build.BuildId)
   displayName: 'Push tag'
