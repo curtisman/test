@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+- test
+
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: skipComponentGovernanceDetection
+    value: true
+
+steps:
+- script: |
+    git tag blah:$(Build.BuildId)
+    git push blah:$(Build.BuildId)
+  displayName: 'Push tag'
