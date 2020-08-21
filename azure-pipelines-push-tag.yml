@@ -17,8 +17,13 @@ variables:
     value: true
 
 steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
+  fetchDepth: 1
 - script: |
     git tag blah-$(Build.BuildId)
     git tag
+    git remote -vv
     git push origin blah-$(Build.BuildId)
   displayName: 'Push tag'
