@@ -18,6 +18,6 @@ variables:
 
 steps:
 - script: |
-    git tag blah:$(Build.BuildId)
-    git push blah:$(Build.BuildId)
+    git tag blah-$(Build.BuildId)
+    git push blah-$(Build.BuildId)
   displayName: 'Push tag'
