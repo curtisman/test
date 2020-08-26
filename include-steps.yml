@@ -5,13 +5,16 @@ parameters:
 
 steps:
 - task: Bash@3
+  displayName: common
   inputs:
+    targetType: 'inline'
     script: |
       echo ${{ parameters.release }}
       echo "Common"
 - ${{ if eq(parameters.release, true) }}:
   - task: Bash@3
+    displayName: release
     inputs:
+      targetType: 'inline'
       script: |
         echo "Release"
-  
