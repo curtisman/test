@@ -1,0 +1,17 @@
+parameters:
+- name: release
+  type: string
+  default:
+
+steps:
+- task: Bash@3
+  inputs:
+    script: |
+      echo ${{ parameters.release }}
+      echo "Common"
+- ${{ if eq(parameters.release, true) }}:
+  - task: Bash@3
+    inputs:
+      script: |
+        echo "Release"
+  

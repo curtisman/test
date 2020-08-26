@@ -3,28 +3,50 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+parameters:
+- name: publishOverride
+  displayName: Publish Override
+  type: string
+  default: default
+  values:
+    - default
+    - skip
+- name: releaseBuildOverride
+  displayName: Release Build Override
+  type: string
+  default: default
+  values:
+    - default
+    - false
+    - true
+
 trigger:
-- master
-- test
-
+  - master
+  - test
+  
 pr: none
-
+  
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - name: skipComponentGovernanceDetection
-    value: true
+- template: include-vars.yml
+  parameters:
+    publishOverride: ${{ parameters.publishOverride }}
+    releaseBuildOverride: ${{ parameters.releaseBuildOverride }}
 
 steps:
 - checkout: self
   persistCredentials: true
   clean: true
   fetchDepth: 1
-- script: |
-    git status
-    git tag blah-$(Build.BuildId)
-    git tag
-    git remote -vv
-    git push origin blah-$(Build.BuildId)
-  displayName: 'Push tag'
+# - script: |
+#     git status
+#     git tag blah-$(Build.BuildId)
+#     git tag
+#     git remote -vv
+#     git push origin blah-$(Build.BuildId)
+#   displayName: 'Push tag'
+- template: include-steps.yml
+  parameters:
+    release: $(release)

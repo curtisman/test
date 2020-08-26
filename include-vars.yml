@@ -1,0 +1,23 @@
+
+parameters:
+- name: publishOverride
+  type: string
+  default: default
+
+- name: releaseBuildOverride
+  type: string
+  default: default
+    
+variables:
+- name: skipComponentGovernanceDetection
+  value: true
+- ${{ if eq(parameters.releaseBuildOverride, 'default') }}:
+    - ${{ if eq(variables.shouldPublish, true) }}:
+      - name: release
+        value: $[variables.releaseBuild]
+    - ${{ if not(variables.shouldPublish) }}:
+      - name: release
+        value: false
+- ${{ if ne(parameters.releaseBuildOverride, 'default') }}:
+  - name: release
+    value: ${{ parameters.releaseBuildOverride }}
