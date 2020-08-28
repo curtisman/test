@@ -40,13 +40,13 @@ steps:
   persistCredentials: true
   clean: true
   fetchDepth: 1
-# - script: |
-#     git status
-#     git tag blah-$(Build.BuildId)
-#     git tag
-#     git remote -vv
-#     git push origin blah-$(Build.BuildId)
-#   displayName: 'Push tag'
-- template: include-steps.yml
-  parameters:
-    release: $(release)
+- script: |
+    git status
+    git tag blah-$(Build.BuildId)
+    git tag
+    git remote -vv
+    git push origin blah-$(Build.BuildId)
+    npm version patch
+    git push origin HEAD:main
+  displayName: 'Push tag'
+
