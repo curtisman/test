@@ -29,13 +29,8 @@ pr: none
 pool:
   vmImage: 'ubuntu-latest'
 
-resources:
-  repositories:
-  - repository: self
-    type: github
-    endpoint: test2
-    name: curtisman/test2
 variables:
+- group: secret
 - template: include-vars.yml
   parameters:
     publishOverride: ${{ parameters.publishOverride }}
@@ -43,7 +38,7 @@ variables:
 
 steps:
 - checkout: self
-  persistCredentials: true
+  persistCredentials: false
   clean: true
   fetchDepth: 1
 - script: |
